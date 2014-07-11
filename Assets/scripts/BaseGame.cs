@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Main : MonoBehaviour {
+public class BaseGame : MonoBehaviour {
 
-	int[][] rowContainer = new int[12][7];
+	int[] rowContainer = new BlockRow[7];
+	int currentBlocks = 4;
 
 	// Use this for initialization
 	void Start () {
-	
+		rowContainer[0] = new BlockRow();
 	}
 	
 	// Update is called once per frame
