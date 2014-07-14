@@ -3,12 +3,19 @@ using System.Collections;
 
 public class BaseGame : MonoBehaviour {
 
-	int[] rowContainer = new BlockRow[7];
+	BlockRow[] rowContainer = new BlockRow[7];
 	int currentBlocks = 4;
+	GameObject gameDisplay;
 
 	// Use this for initialization
 	void Start () {
-		rowContainer[0] = new BlockRow();
+		gameDisplay = GameObject.FindGameObjectWithTag("ForegroundLevel");
+		int dimension = 64, margin = 16, x_pos = 1, y_pos = 1;
+		foreach(Transform child in gameDisplay.transform){
+			foreach(Transform box in child){
+
+			}
+		}
 	}
 	
 	// Update is called once per frame
@@ -17,7 +24,8 @@ public class BaseGame : MonoBehaviour {
 //		foreach (Touch t in Input.touches){
 //			Debug.Log ("Screen was pressed");
 //		}
-		if(Touch.tapCount > 0){
+		Touch t = new Touch();
+		if(t.tapCount > 0){
 			Debug.Log ("SHIEEEET");
 		}
 	}
