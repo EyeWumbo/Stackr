@@ -10,11 +10,11 @@ public class BaseGame : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gameDisplay = transform.gameObject;
-		int dimension = 64, margin = 16, x_pos = 1, y_pos = 1;
-		foreach(Transform child in gameDisplay.transform){
-			foreach(Transform box in child){
-
-			}
+		for(int i = 0; i < 12; i ++){
+			GameObject obj = (GameObject) Instantiate (Resources.Load ("BlockRow"));
+			obj.name = "BlockRow";
+			obj.transform.parent = gameDisplay.transform;
+			obj.GetComponent<BlockRow>().assignAssetToBlock(i);
 		}
 	}
 	
