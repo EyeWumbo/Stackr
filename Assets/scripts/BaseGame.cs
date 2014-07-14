@@ -9,7 +9,7 @@ public class BaseGame : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		gameDisplay = GameObject.FindGameObjectWithTag("ForegroundLevel");
+		gameDisplay = transform.gameObject;
 		int dimension = 64, margin = 16, x_pos = 1, y_pos = 1;
 		foreach(Transform child in gameDisplay.transform){
 			foreach(Transform box in child){
