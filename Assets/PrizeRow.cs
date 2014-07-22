@@ -18,12 +18,13 @@ public class PrizeRow : CustomGUI {
 		LogicFade();
 	}
 
-	public void ReceiveData(int row, int column, int rowsAsHeight, int columnsAsWidth)
+	public void ReceiveData(int row, int column, int rowsAsHeight, int columnsAsWidth, int layer)
 	{
 		x = column;
 		y = row;
 		rX = columnsAsWidth;
 		rY = rowsAsHeight;
+		l = layer;
 	}
 	
 }

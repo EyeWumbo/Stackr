@@ -31,6 +31,7 @@ public class CustomGUI : GlobalVariables
 	public int y;
 	public int rX;
 	public int rY;
+	public int l;
 	float reveal = 1; // 0:hide  1:show
 
 	//Called from outside and takes in <bool toShow> parameter,  true:show  false:hide
@@ -81,7 +82,7 @@ public class CustomGUI : GlobalVariables
 			
 			transform.position = new Vector3(x * workingHeight / TOTAL_ROWS + ((1-alphaScale) * scale.x - TOTAL_COLUMNS * scale.x / rX) * spriteWidth * 0.5f,
 			                                 workingHeight * ((float)y / TOTAL_ROWS - 0.5f) + (1-alphaScale) * spriteHeight * scale.y * 0.5f,
-			                                 -1);
+			                                 l);
 		}
 		else //Too tall, center by Y
 		{
@@ -89,7 +90,9 @@ public class CustomGUI : GlobalVariables
 			scale.y = workingWidth / spriteWidth / TOTAL_COLUMNS * rY;
 			transform.localScale = new Vector2(scale.x * alphaScale, scale.y * alphaScale);
 
-			transform.position = new Vector3(-workingWidth/2 - x*workingWidth/TOTAL_COLUMNS + (1-alphaScale) * spriteWidth * scale.x / 2, -workingHeight/2 + y*workingWidth/TOTAL_COLUMNS + (workingHeight - TOTAL_ROWS * scale.y / rY * spriteHeight)/2 + (1-alphaScale) * spriteHeight * scale.y / 2, -1);
+			transform.position = new Vector3(-workingWidth/2 + x*workingWidth/TOTAL_COLUMNS + (1-alphaScale)*spriteWidth*scale.x/2,
+			                                 -workingHeight/2 + y*workingWidth/TOTAL_COLUMNS + (workingHeight - TOTAL_ROWS * scale.y / rY * spriteHeight)/2 + (1-alphaScale) * spriteHeight * scale.y / 2,
+			                                 l);
 		}
 	}
 }

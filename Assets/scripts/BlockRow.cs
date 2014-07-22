@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BlockRow : MonoBehaviour {
+public class BlockRow : GlobalVariables {
 
 	public GameObject[] rowBlocks = new GameObject[0];
 	public bool isActive = true;
@@ -9,13 +9,13 @@ public class BlockRow : MonoBehaviour {
 
 	//Treat this as the start function for BlockRow because it requires y_pos
 	public void AssignAssetToBlock(int y_pos){
-		System.Array.Resize(ref rowBlocks, Camera.main.GetComponent<GlobalVariables>().TOTAL_COLUMNS);
+		System.Array.Resize(ref rowBlocks, TOTAL_COLUMNS);
 		for (int i = 0; i < rowBlocks.Length; i++)
 		{
 			rowBlocks[i] = (GameObject)Instantiate(Resources.Load("SimpleBlock"));
 			rowBlocks[i].name = "SimpleBlock" + i.ToString();
 			rowBlocks[i].transform.parent = transform;
-			rowBlocks[i].GetComponent<SimpleBlock>().ReceiveAssetForBlock(i, y_pos);
+			rowBlocks[i].GetComponent<SimpleBlock>().ReceiveAssetForBlock(i, y_pos, 1, 1, 0);
 
 			SetActiveInRow(i, false);
 		}
