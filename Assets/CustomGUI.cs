@@ -33,6 +33,12 @@ public class CustomGUI : GlobalVariables
 	public int rY;
 	public int l;
 	float reveal = 1; // 0:hide  1:show
+	private Vector2 screen;
+	
+	void Update()
+	{
+		screen = new Vector2(Screen.width, Screen.height);
+	}
 
 	//Called from outside and takes in <bool toShow> parameter,  true:show  false:hide
 	public void CustomLogicVisibility(bool toShow)
@@ -57,42 +63,45 @@ public class CustomGUI : GlobalVariables
 	//Manages the rescaling based on different screen sizes
 	public void Rescale()
 	{
-		//Gather resources
-		SpriteRenderer sr = GetComponent<SpriteRenderer>();
-		if (sr == null) return;
-		transform.localScale = new Vector3(1,1,1);
-		
-		//Find dimensions of sprite resource
-		float spriteWidth = sr.sprite.bounds.size.x;
-		float spriteHeight = sr.sprite.bounds.size.y;
-		
-		//Find dimensions of working view (camera - padding) when rendered
-		float workingHeight = Camera.main.orthographicSize * 2f - PAD_Y;
-		float workingWidth = workingHeight / Screen.height * Screen.width - PAD_X;
-		
-		Vector2 scale = new Vector2(0,0); //scale is a ratio between camera and sprite size, to be multiplied back to sprite
-		float alphaScale = 1.2f - renderer.material.color.a * 0.2f;
-		
-		if (workingWidth/workingHeight > (float)TOTAL_COLUMNS / TOTAL_ROWS) //Too wide, center by X
+		if (screen.x != Screen.width || screen.y != Screen.width)
 		{
-			//Resize sprite
-			scale.x = workingHeight / spriteHeight / TOTAL_ROWS * rX;
-			scale.y = workingHeight / spriteHeight / TOTAL_ROWS * rY;
-			transform.localScale = new Vector2(scale.x * alphaScale, scale.y * alphaScale);
+			//Gather resources
+			SpriteRenderer sr = GetComponent<SpriteRenderer>();
+			if (sr == null) return;
+			transform.localScale = new Vector3(1,1,1);
 			
-			transform.position = new Vector3(x * workingHeight / TOTAL_ROWS + ((1-alphaScale) * scale.x - TOTAL_COLUMNS * scale.x / rX) * spriteWidth * 0.5f,
-			                                 workingHeight * ((float)y / TOTAL_ROWS - 0.5f) + (1-alphaScale) * spriteHeight * scale.y * 0.5f,
-			                                 l);
-		}
-		else //Too tall, center by Y
-		{
-			scale.x = workingWidth / spriteWidth / TOTAL_COLUMNS * rX;
-			scale.y = workingWidth / spriteWidth / TOTAL_COLUMNS * rY;
-			transform.localScale = new Vector2(scale.x * alphaScale, scale.y * alphaScale);
+			//Find dimensions of sprite resource
+			float spriteWidth = sr.sprite.bounds.size.x;
+			float spriteHeight = sr.sprite.bounds.size.y;
+			
+			//Find dimensions of working view (camera - padding) when rendered
+			float workingHeight = Camera.main.orthographicSize * 2f - PAD_Y;
+			float workingWidth = workingHeight / Screen.height * Screen.width - PAD_X;
+			
+			Vector2 scale = new Vector2(0,0); //scale is a ratio between camera and sprite size, to be multiplied back to sprite
+			float alphaScale = 1.2f - renderer.material.color.a * 0.2f;
+			
+			if (workingWidth/workingHeight > (float)TOTAL_COLUMNS / TOTAL_ROWS) //Too wide, center by X
+			{
+				//Resize sprite
+				scale.x = workingHeight / spriteHeight / TOTAL_ROWS * rX;
+				scale.y = workingHeight / spriteHeight / TOTAL_ROWS * rY;
+				transform.localScale = new Vector2(scale.x * alphaScale, scale.y * alphaScale);
+				
+				transform.position = new Vector3(x * workingHeight / TOTAL_ROWS + ((1-alphaScale) * scale.x - TOTAL_COLUMNS * scale.x / rX) * spriteWidth * 0.5f,
+				                                 workingHeight * ((float)y / TOTAL_ROWS - 0.5f) + (1-alphaScale) * spriteHeight * scale.y * 0.5f,
+				                                 l);
+			}
+			else //Too tall, center by Y
+			{
+				scale.x = workingWidth / spriteWidth / TOTAL_COLUMNS * rX;
+				scale.y = workingWidth / spriteWidth / TOTAL_COLUMNS * rY;
+				transform.localScale = new Vector2(scale.x * alphaScale, scale.y * alphaScale);
 
-			transform.position = new Vector3(-workingWidth/2 + x*workingWidth/TOTAL_COLUMNS + (1-alphaScale)*spriteWidth*scale.x/2,
-			                                 -workingHeight/2 + y*workingWidth/TOTAL_COLUMNS + (workingHeight - TOTAL_ROWS * scale.y / rY * spriteHeight)/2 + (1-alphaScale) * spriteHeight * scale.y / 2,
-			                                 l);
+				transform.position = new Vector3(-workingWidth/2 + x*workingWidth/TOTAL_COLUMNS + (1-alphaScale)*spriteWidth*scale.x/2,
+				                                 -workingHeight/2 + y*workingWidth/TOTAL_COLUMNS + (workingHeight - TOTAL_ROWS * scale.y / rY * spriteHeight)/2 + (1-alphaScale) * spriteHeight * scale.y / 2,
+				                                 l);
+			}
 		}
 	}
 }

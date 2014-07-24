@@ -3,12 +3,13 @@ using System.Collections;
 
 public class BaseGame : GlobalVariables {
 
-	public GameObject[] rowContainer = new GameObject[0];
-	public GameObject easyPrize;
-	public GameObject bestPrize;
-	public int currentBlocks;
-	public int currentRow;
+	private GameObject[] rowContainer = new GameObject[0];
+	private GameObject easyPrize;
+	private GameObject bestPrize;
+	private int currentBlocks;
+	private int currentRow;
 	public ArrayList inputLog = new ArrayList();
+	private int buttonCD = 0;
 
 	void OnGUI()
 	{
@@ -79,7 +80,7 @@ public class BaseGame : GlobalVariables {
 
 	void FixedUpdate()
 	{
-		if (Camera.main.GetComponent<GlobalVariables>().INPUT_NORMAL_CLICK)
+		if (Camera.main.GetComponent<GlobalVariables>().INPUT_NORMAL_CLICK && buttonCD == 0)
 		{
 			inputLog.Add(Time.time);
 			NextRow();
@@ -93,6 +94,10 @@ public class BaseGame : GlobalVariables {
 				Invoke("NextRow",(float)inputLog[i]);
 			}
 		}
+		if (buttonCD > 0)
+		{
+			buttonCD--;
+		}
 	}
 
 	void UpdateRow()
@@ -102,6 +107,7 @@ public class BaseGame : GlobalVariables {
 
 	void NextRow()
 	{
+		buttonCD = 5;
 		if (currentRow > 0)
 		{
 			StackLogic();

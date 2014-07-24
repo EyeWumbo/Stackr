@@ -5,7 +5,7 @@ public class SimpleBlock : CustomGUI {
 
 	public bool isActive = false;
 
-	void Update ()
+	void Update()
 	{
 		Rescale();
 	}

@@ -101,7 +101,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
 --- !u!114 &875699365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,11 +113,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   INPUT_NORMAL_CLICK: 0
-  rowContainer: []
-  easyPrize: {fileID: 0}
-  bestPrize: {fileID: 0}
-  currentBlocks: 4
-  currentRow: -1
 --- !u!1 &1080098953
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +163,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -187,11 +181,8 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
   m_HDR: 0
   m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: .0219999999
 --- !u!4 &1080098958
 Transform:
   m_ObjectHideFlags: 0
@@ -203,7 +194,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
 --- !u!114 &1080098959
 MonoBehaviour:
   m_ObjectHideFlags: 0
