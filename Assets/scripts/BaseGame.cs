@@ -10,6 +10,14 @@ public class BaseGame : GlobalVariables {
 	public int currentRow;
 	public ArrayList inputLog = new ArrayList();
 
+	void OnGUI()
+	{
+		if (GUI.Button(new Rect(50,50,200,200), "Reset"))
+		{
+			Reset();
+		}
+	}
+
 	void Start()
 	{
 		Identify();
