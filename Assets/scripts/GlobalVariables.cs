@@ -3,8 +3,8 @@ using System.Collections;
 
 public class GlobalVariables: MonoBehaviour
 {
-	public readonly int TOTAL_ROWS = 12;
-	public readonly int TOTAL_COLUMNS = 7;
+	public readonly int TOTAL_ROWS = 24;
+	public readonly int TOTAL_COLUMNS = 14;
 	public readonly int PAD_X = 1;
 	public readonly int PAD_Y = 1;
 	public readonly int EASY_PRIZE_ROW = 6;

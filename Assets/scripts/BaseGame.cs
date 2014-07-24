@@ -66,7 +66,7 @@ public class BaseGame : GlobalVariables {
 
 		//Set up game and start
 		NextRow();
-		InvokeRepeating("UpdateRow", 0, 0.1F);
+		InvokeRepeating("UpdateRow", 0, 0.05F);
 	}
 
 	void FixedUpdate()

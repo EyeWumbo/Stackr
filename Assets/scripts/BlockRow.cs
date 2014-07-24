@@ -40,65 +40,77 @@ public class BlockRow : GlobalVariables {
 	{
 		if (movingRight) //Moving right
 		{
-			int startIndex = 0;
-			int endIndex = 0;
-			if (rowBlocks[rowBlocks.Length-1].GetComponent<SimpleBlock>().isActive)
-			{
-				movingRight = false;
-			}
-			else
-			{
-				while (startIndex < rowBlocks.Length)
-				{
-					if (rowBlocks[startIndex].GetComponent<SimpleBlock>().isActive)
-					{
-						break;
-					}
-					startIndex++;
-				}
-				endIndex = startIndex;
-				while (endIndex < rowBlocks.Length)
-				{
-					if (!rowBlocks[endIndex].GetComponent<SimpleBlock>().isActive)
-					{
-						break;
-					}
-					endIndex++;
-				}
-				rowBlocks[startIndex].GetComponent<SimpleBlock>().ChangeActive(false);
-				rowBlocks[endIndex].GetComponent<SimpleBlock>().ChangeActive(true);
-			}
+			moveRight();
 		}
 		else //Moving left
 		{
-			int startIndex = rowBlocks.Length - 1;
-			int endIndex = rowBlocks.Length - 1;
-			if (rowBlocks[0].GetComponent<SimpleBlock>().isActive)
+			moveLeft();
+		}
+	}
+
+	void moveRight()
+	{
+		int startIndex = 0;
+		int endIndex = 0;
+		if (rowBlocks[rowBlocks.Length-1].GetComponent<SimpleBlock>().isActive)
+		{
+			movingRight = false;
+			moveLeft();
+		}
+		else
+		{
+			while (startIndex < rowBlocks.Length)
 			{
-				movingRight = true;
+				if (rowBlocks[startIndex].GetComponent<SimpleBlock>().isActive)
+				{
+					break;
+				}
+				startIndex++;
 			}
-			else
+			endIndex = startIndex;
+			while (endIndex < rowBlocks.Length)
 			{
-				while (startIndex >= 0)
+				if (!rowBlocks[endIndex].GetComponent<SimpleBlock>().isActive)
 				{
-					if (rowBlocks[startIndex].GetComponent<SimpleBlock>().isActive)
-					{
-						break;
-					}
-					startIndex--;
+					break;
 				}
-				endIndex = startIndex;
-				while (endIndex >= 0)
-				{
-					if (!rowBlocks[endIndex].GetComponent<SimpleBlock>().isActive)
-					{
-						break;
-					}
-					endIndex--;
-				}
-				rowBlocks[startIndex].GetComponent<SimpleBlock>().ChangeActive(false);
-				rowBlocks[endIndex].GetComponent<SimpleBlock>().ChangeActive(true);
+				endIndex++;
 			}
+			rowBlocks[startIndex].GetComponent<SimpleBlock>().ChangeActive(false);
+			rowBlocks[endIndex].GetComponent<SimpleBlock>().ChangeActive(true);
+		}
+	}
+
+	void moveLeft()
+	{
+		int startIndex = rowBlocks.Length - 1;
+		int endIndex = rowBlocks.Length - 1;
+		if (rowBlocks[0].GetComponent<SimpleBlock>().isActive)
+		{
+			movingRight = true;
+			moveRight();
+		}
+		else
+		{
+			while (startIndex >= 0)
+			{
+				if (rowBlocks[startIndex].GetComponent<SimpleBlock>().isActive)
+				{
+					break;
+				}
+				startIndex--;
+			}
+			endIndex = startIndex;
+			while (endIndex >= 0)
+			{
+				if (!rowBlocks[endIndex].GetComponent<SimpleBlock>().isActive)
+				{
+					break;
+				}
+				endIndex--;
+			}
+			rowBlocks[startIndex].GetComponent<SimpleBlock>().ChangeActive(false);
+			rowBlocks[endIndex].GetComponent<SimpleBlock>().ChangeActive(true);
 		}
 	}
 }
