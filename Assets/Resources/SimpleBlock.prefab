@@ -28,6 +28,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39,6 +40,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe2b473e146cc14698f92179858e952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  INPUT_NORMAL_CLICK: 0
+  x: 0
+  y: 0
+  rX: 0
+  rY: 0
+  l: 0
   isActive: 1
 --- !u!212 &21200000
 SpriteRenderer:
@@ -58,10 +65,9 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: cd64ddead1a16b64db6341fef96ed4d5, type: 3}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300002, guid: d5fc26b8b309b4e7d8b0d0f11b7764d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
