@@ -14,6 +14,6 @@ public class GlobalVariables: MonoBehaviour
 
 	void Update()
 	{
-		INPUT_NORMAL_CLICK = Input.GetKeyDown(KeyCode.Space) || new Touch().tapCount > 0;
+		INPUT_NORMAL_CLICK = Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0); //new Touch().tapCount > 0;
 	}
 }

@@ -3,6 +3,11 @@ using System.Collections;
 
 public class PrizeRow : CustomGUI {
 
+	void Start()
+	{
+		CustomLogicVisibility(false);
+	}
+
 	void Update()
 	{
 		Rescale();
