@@ -13,9 +13,19 @@ public class BaseGame : GlobalVariables {
 
 	void OnGUI()
 	{
-		if (GUI.Button(new Rect(50,50,200,200), "Reset"))
+		if (currentBlocks <= 0)
 		{
-			Reset();
+			if (GUI.Button(new Rect(0,0,Screen.width,Screen.height), "Play Again"))
+			{
+				Reset();
+			}
+		}
+		else if (currentRow >= TOTAL_ROWS)
+		{
+			if (GUI.Button(new Rect(0,0,Screen.width,Screen.height), "You won!\nPlay Again"))
+			{
+				Reset();
+			}
 		}
 	}
 
@@ -100,20 +110,43 @@ public class BaseGame : GlobalVariables {
 		}
 	}
 
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			Application.Quit();
+		}
+
+		if (currentRow == 5)
+		{
+			easyPrize.GetComponent<PrizeRow>().CustomLogicVisibility(true);
+		}
+		if (currentRow == 7)
+		{
+			bestPrize.GetComponent<PrizeRow>().CustomLogicVisibility(true);
+		}
+	}
+
 	void UpdateRow()
 	{
-		rowContainer[currentRow].GetComponent<BlockRow>().UpdateRow();
+		if (currentBlocks > 0 && currentRow < TOTAL_ROWS)
+		{
+			rowContainer[currentRow].GetComponent<BlockRow>().UpdateRow();
+		}
 	}
 
 	void NextRow()
 	{
 		buttonCD = 5;
-		if (currentRow > 0)
+		if (currentRow > 0 && currentRow < TOTAL_ROWS)
 		{
 			StackLogic();
 			currentBlocks = rowContainer[currentRow].GetComponent<BlockRow>().GetActiveInRow();
 		}
-		currentRow++;
+		if (currentBlocks != 0)
+		{
+			currentRow++;
+		}
 		for (int i = 0; i < currentBlocks; i++)
 		{
 			rowContainer[currentRow].GetComponent<BlockRow>().SetActiveInRow(i,true);
